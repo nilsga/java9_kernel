@@ -43,9 +43,10 @@ class JavaKernel(Kernel):
         sig = signal.signal(signal.SIGINT, signal.SIG_DFL)
         try:
             self.javawrapper = replwrap.REPLWrapper(
-                "{} -jar {}".format(
+                "{} -cp {} {}".format(
                     self._JAVA_COMMAND,
-                    self._KULLA_LOCATION
+                    self._KULLA_LOCATION,
+		    "jdk.internal.jshell.tool.JShellToolProvider"
                 ),
                 u'jshell> ',
                 None,
