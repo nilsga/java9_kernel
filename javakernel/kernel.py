@@ -24,13 +24,12 @@ class JavaKernel(Kernel):
                      'file_extension': '.class'}
 
     _JAVA_COMMAND = '{}/bin/java'.format(os.environ['JAVA_9_HOME'])
-    _KULLA_LOCATION = os.environ['KULLA_HOME']
+    _JSHELL_COMMAND = '{}/bin/jshell'.format(os.environ['JAVA_9_HOME']
 
     def __init__(self, **kwargs):
         super(JavaKernel, self).__init__(**kwargs)
         self._banner = None
-        self.env = {"JAVA_9_HOME": os.environ['JAVA_9_HOME'],
-                    "KULLA_HOME": os.environ['KULLA_HOME']}
+        self.env = {"JAVA_9_HOME": os.environ['JAVA_9_HOME']}
         self._start_java_repl()
 
     @property
@@ -44,8 +43,7 @@ class JavaKernel(Kernel):
         try:
             self.javawrapper = replwrap.REPLWrapper(
                 "{} {}".format(
-                    self._JAVA_COMMAND,
-		    "jdk.internal.jshell.tool.JShellToolProvider"
+                    self._JSHELL_COMMAND
                 ),
                 u'jshell> ',
                 None,
