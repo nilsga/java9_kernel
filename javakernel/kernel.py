@@ -24,7 +24,7 @@ class JavaKernel(Kernel):
                      'file_extension': '.class'}
 
     _JAVA_COMMAND = '{}/bin/java'.format(os.environ['JAVA_9_HOME'])
-    _JSHELL_COMMAND = '{}/bin/jshell'.format(os.environ['JAVA_9_HOME']
+    _JSHELL_COMMAND = '{}/bin/jshell'.format(os.environ['JAVA_9_HOME'])
 
     def __init__(self, **kwargs):
         super(JavaKernel, self).__init__(**kwargs)
@@ -43,7 +43,8 @@ class JavaKernel(Kernel):
         try:
             self.javawrapper = replwrap.REPLWrapper(
                 "{} {}".format(
-                    self._JSHELL_COMMAND
+                    self._JSHELL_COMMAND,
+                    "-q"
                 ),
                 u'jshell> ',
                 None,
